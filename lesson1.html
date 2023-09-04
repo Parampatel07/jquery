@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Example of Jquery</title>
+</head>
+
+<body>
+     <h1 align="center">
+          Example of Jquery
+     </h1>
+     <hr>
+     <h2 class="my_info">
+
+     </h2>
+     <h3>
+          My name is : <span id="name"></span>
+     </h3>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+     <script>
+          $(document).ready(function () {
+               console.log("Jquery Working ");
+
+               $('#name').html(`<h1>Param Patel</h1>`);
+               // $('#name').text(`Param Patel`);
+               $('.my_info').html(`<h1>My Info</h1>`);
+          });
+     </script>
+</body>
+
+</html>

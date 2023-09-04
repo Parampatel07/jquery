@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Example of Jquery</title>
+</head>
+
+<body>
+     <h1 align="center">
+          Example of Jquery - variables
+     </h1>
+     <hr>
+     <form action="">
+          <table border="2" align="center" cellpadding="5" width="70%">
+               <tr>
+                    <td>
+                         Enter number 1 : <input type="text" name="number1" id="number1">
+                    </td>
+               </tr>
+               <tr>
+                    <td>
+                         Enter number 2 : <input type="text" name="number2" id="number2">
+                    </td>
+               </tr>
+               <tr>
+                    <td>
+                         Answer is : <span id="answer"></span>
+                    </td>
+               </tr>
+               <tr>
+                    <td align="center">
+                         <input type="button" id="calc" value="Calculate">
+                         <input type="reset" value="clear all" id="calc">
+                    </td>
+               </tr>
+
+          </table>
+     </form>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+     <script>
+          $(document).ready(function () {
+               console.log("Jquery working ");
+               let number1 = 0;
+               let number2 = 0;
+
+               $('#calc').click(function () {
+                    console.log("calc button clicked ");
+                    number1 = parseInt($("#number1").val());
+                    number2 = parseInt($("#number2").val());
+                    console.log("The value of number 1 is ", number1, "the value of number 2 is ", number2);
+                    console.log(number1 + number2);
+                    $("#answer").html(number1 + number2);
+               });
+          });
+     </script>
+</body>
+
+</html>
