@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Lesson 3</title>
+</head>
+
+<body>
+     <h1 align="center">
+          Example of table Generator
+     </h1>
+     <hr>
+     <form action="">
+          <table border="2" align="center" cellpadding="15">
+               <tr>
+                    <td>
+                         <label for="column">Enter number of Column :</label>
+                    </td>
+                    <td>
+                         <input type="number" name="column" id="column" placeholder="Enter number of Colum ">
+                    </td>
+               </tr>
+               <tr>
+                    <td>
+                         <label for="row">Enter number of Rows :</label>
+                    </td>
+                    <td>
+                         <input type="number" name="row" id="row" placeholder="Enter number of row ">
+                    </td>
+               </tr>
+               <tr>
+                    <td>
+                         <label for="row">Enter Text for Table :</label>
+                    </td>
+                    <td>
+                         <input type="text" name="my_text" id="my_text" placeholder="Enter Text for table ">
+                    </td>
+               </tr>
+               <tr>
+                    <td colspan="2" align="center">
+                         <input type="button" id="generate" value="Generate Table">
+                         <input type="reset" value="Clear all">
+                    </td>
+               </tr>
+          </table>
+     </form>
+     <div id="my_table" style="margin-top: 50px;">
+
+     </div>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+     <script>
+
+          function clear_input() {
+               $('#column').val('');
+               $('#row').val('');
+               $('#my_text').val('');
+          }
+          $(document).ready(function () {
+               console.log("Jquery Working ");
+               clear_input();
+               $('#generate').click(function () {
+                    let td = '';
+                    let tr = '';
+                    let table = '';
+                    // console.log("Button Clicked ");
+                    let column = parseInt($('#column').val());
+                    let row = parseInt($('#row').val());
+                    let text = $('#my_text').val();
+                    // console.log(`The value of Column is ${column}  the value of row is  ${row}`);
+                    let count = 0;
+                    while (count < column) {
+                         td += `<td>${text}</td>`;
+                         count++;
+                    }
+                    // console.log(td);
+                    count = 0;
+                    while (count < row) {
+                         tr += `<tr>${td}</tr>`
+                         count++;
+                    }
+                    // console.log(tr);
+                    table = `<table border="2" align="center" cellpadding="15">${tr}<table/>`
+                    // console.log(table);
+                    $('#my_table').html(table);
+                    clear_input();
+               });
+
+          });
+     </script>
+</body>
+
+</html>
