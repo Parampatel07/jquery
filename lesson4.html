@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>Example of Crud Using Jquery</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+     <div class="container">
+          <div class="row">
+               <div class="col-10 offset-1 mt-5">
+                    <form action="" id="myform">
+                         <div class="card mt-5 shadow">
+                              <div class="card-header text-bg-danger ">
+                                   <div class="h2">
+                                        Student Form
+                                   </div>
+                              </div>
+                              <div class="card-body">
+                                   <div class="row">
+                                        <div class="col-12">
+                                             <div class="form-group mt-3">
+                                                  <label for="roll_no">Enter your Roll no here</label>
+                                                  <input type="number" name="roll_no" id="roll_no"
+                                                       placeholder="Enter your roll number here"
+                                                       class="required form-control">
+                                             </div>
+
+                                             <div class="form-group mt-3">
+                                                  <label for="name">Enter your Name no here</label>
+                                                  <input type="text" name="name" id="name"
+                                                       placeholder="Enter your Full Name here" class="form-control">
+                                             </div>
+
+                                             <div class="form-group mt-3">
+                                                  <label for="percentage">Enter your Percentage here</label>
+                                                  <input type="number" name="percentage" id="percentage"
+                                                       placeholder="Enter your Percentage here" class="form-control"
+                                                       min="0.99" max="99.99">
+                                             </div>
+                                             <div class="text-end mt-3">
+                                                  <input type="button" name="btn" id="add_student"
+                                                       class="btn btn-danger" value="Add Student">
+                                                  <input type="reset" class="btn btn-success" value="Clear all">
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </form>
+               </div>
+          </div>
+          <div class="row">
+               <div class="col-10 offset-1">
+                    <div class="card my-5 shadow">
+                         <div class="card-header text-bg-success">
+                              <div class="h2">
+                                   Student Data
+                              </div>
+                         </div>
+                         <div class="card-body">
+                              <div class="table-responsive ">
+                                   <table border="2" width="100%" cellpadding="5" align="center">
+                                        <thead>
+                                             <th>Roll No</th>
+                                             <th>Name</th>
+                                             <th>Percentage</th>
+                                             <th>Edit & Delete</th>
+                                        </thead>
+                                        <tbody id="mytable">
+
+                                        </tbody>
+                                   </table>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+          crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+          integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <script>
+          $(document).ready(function () {
+               console.log("Jquery Working ");
+               var id = 1;
+               $("#add_student").click(function () {
+                    console.log("Add Student Clicked ");
+                    $("#myform").validate({
+                         rules: {
+                              roll_no: {
+                                   required: true
+                              }
+                         },
+                         messages: {
+                              roll_no: "Please enter your Roll no",
+                              email: "Please enter a valid email address"
+                         }
+                    });
+                    let roll_no = $("#roll_no").val();
+                    let name = $("#name").val();
+                    let percentage = $("#percentage").val();
+                    console.log("The value of roll no is " + roll_no + " The value of name is " + name + " The value of percentage is " + percentage);
+                    if ($(this).val() == 'Add Student') {
+                         let tr = `<tr data-id='${id}' >
+                                   <td align='center'>${roll_no}</td>
+                                   <td>${name}</td>
+                                   <td align='center'>${percentage}</td>
+                                   <td>
+                                        <button type='button' class="btn btn-primary edit_student"><i class="fa-solid fa-pen-to-square"></i> </button>
+
+                                        <button type='button' class="btn btn-warning delete_student" ><i class="fa-solid fa-trash"></i> </button>
+                                   </td>
+                              </tr>`;
+                         $('#mytable').append(tr);
+                         id = id + 1;
+                         $("#roll_no").val('');
+                         $("#name").val('');
+                         $("#percentage").val('');
+                    }
+                    else{
+                         
+                    }
+               });
+
+               $("body").on('click', 'button.delete_student', function () {
+                    console.log("dlt button clicked ");
+                    let delete_id = $(this).parent().parent().attr('data-id');
+                    console.log(delete_id);
+                    $(this).parent().parent().addClass('text-bg-danger').fadeOut();
+               });
+
+               $("body").on('click', 'button.edit_student', function () {
+                    console.log("edit button clicked ");
+                    var edit_id = $(this).parent().parent().attr('data-id');
+                    let tr = $(this).parent().parent();
+                    console.log(tr);
+                    console.log(tr.children().eq(0).text());
+                    let roll_no = tr.children().eq(0).text();
+                    let name = tr.children().eq(1).text();
+                    let percentage = tr.children().eq(2).text();
+                    $("#roll_no").val(roll_no);
+                    $("#name").val(name);
+                    $("#percentage").val(percentage);
+                    $('#add_student').val('Update Student');
+               });
+
+          });
+     </script>
+</body>
+
+</html>
